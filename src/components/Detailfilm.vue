@@ -1,14 +1,14 @@
 <template>
   <div v-if="!loading">
-    <div class="row">
-      <div class="col-md-4 d-flex justify-content-between m-5">
+    <div class="row synopsis">
+      <div class="col-md-6 m-auto d-flex justify-content-between">
         <img
-          class="detail"
+          class="detail m-auto"
           v-bind:src="preUrl + film.poster_path"
           alt="moviePoster"
         />
       </div>
-      <div class="col m-5 align-self-center">
+      <div class="col-md-5 m-auto align-self-center description bg-white">
         <h1>{{ film.title.toUpperCase() }}</h1>
         <br />
         <h4>{{ film.tagline }}</h4>
@@ -21,7 +21,9 @@
         <br />
         <p><strong>Casting :</strong></p>
         <div v-for="credit in credits" v-bind:key="credit.original_name">
-          <p v-if="credit.character">{{ credit.original_name }} dans le rôle de  {{ credit.character }}</p>
+          <p v-if="credit.character">
+            {{ credit.original_name }} dans le rôle de {{ credit.character }}
+          </p>
         </div>
         <br />
         <div>

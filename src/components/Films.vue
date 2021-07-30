@@ -41,7 +41,7 @@ export default {
                     component.films.push(film);
                   });
                 });
-            });
+            }) ;
         });
     },
   },

@@ -1,5 +1,5 @@
 <template>
-  <Movieslist  :films="films"/>
+  <Movieslist :films="films" />
 </template>
 
 <script>
@@ -23,6 +23,35 @@ export default {
       )
       .then((res) => {
         this.films = res.data.results;
+
+        axios
+          .get(
+            "https://api.themoviedb.org/3/discover/movie?api_key=95001b5aec050365d3211d744501b39e&include_adult=false&include_video=false&page=2&language=fr&certification_country=us&vote_count.gte=10000"
+          )
+          .then((res) => {
+            res.data.results.forEach((film) => {
+              this.films.push(film);
+              axios
+                .get(
+                  "https://api.themoviedb.org/3/discover/movie?api_key=95001b5aec050365d3211d744501b39e&include_adult=false&include_video=false&page=3&language=fr&certification_country=us&vote_count.gte=10000"
+                )
+                .then((res) => {
+                  res.data.results
+                    .forEach((film) => {
+                      this.films.push(film);
+                    })
+                    .catch((err) => {
+                      alert("FAIL", err);
+                    });
+                });
+            });
+          })
+          .catch((err) => {
+            alert("FAIL", err);
+          });
+      })
+      .catch((err) => {
+        alert("FAIL", err);
       });
   },
 };

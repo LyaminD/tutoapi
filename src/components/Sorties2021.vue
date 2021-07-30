@@ -1,5 +1,5 @@
 <template>
-  <Movieslist  :films="films"/>
+  <Movieslist :films="films" />
 </template>
 
 <script>
@@ -23,6 +23,9 @@ export default {
       )
       .then((res) => {
         this.films = res.data.results;
+      })
+      .catch((err) => {
+        alert("FAIL", err);
       });
   },
 };

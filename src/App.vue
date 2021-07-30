@@ -16,13 +16,16 @@
         </form>
       </div>
     </div>
+
     <div v-if="search != ''">
       <Movieslist :films="films" />
     </div>
+
     <div v-else>
       <div v-if="$route.path == '/'">
         <Films />
       </div>
+      
       <div v-else>
         <router-view :key="$route.fullPath"> </router-view>
       </div>
@@ -114,7 +117,7 @@ footer {
   bottom: -200px;
 }
 
-@media all and (max-width: 1024px) {
+@media all and (max-width: 680px) {
   iframe {
     width: 70vw;
     height: 30vh;
@@ -132,6 +135,24 @@ footer {
 
   .collapse {
     background-color: rgb(47, 47, 51);
+  }
+}
+
+@media all and (min-width: 682px) and (max-width: 1260px) {
+  .synopsis {
+    flex-direction: column;
+  }
+
+  .detail {
+    justify-content: center;
+  }
+
+  .collapse {
+    background-color: rgb(47, 47, 51);
+  }
+
+  .description {
+    margin-top: 10px;
   }
 }
 </style>
